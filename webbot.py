@@ -11,4 +11,4 @@ html = r.read()             #Lee la pagina solicitada en una unica cadena
 
 soup = BeautifulSoup(html)
 for link in soup.find_all('a'):
-    print (link.get('href'))
+    print (link.get('href'), "lxml")
