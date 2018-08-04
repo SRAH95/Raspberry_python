@@ -9,6 +9,6 @@ br = mechanize.Browser()    #Creamos un objeto en forma de navegador
 r = br.open(start)          #Abrimos la pagina solicitada
 html = r.read()             #Lee la pagina solicitada en una unica cadena
 
-soup = BeautifulSoup(html)
+soup = BeautifulSoup(html, "lxml")
 for link in soup.find_all('a'):
-    print (link.get('href'), "lxml")
+    print (link.get('href'))
