@@ -12,3 +12,5 @@ html = r.read()             #Lee la pagina solicitada en una unica cadena
 soup = BeautifulSoup(html, "lxml")
 for link in soup.find_all('a'):
     print (link.get('href'))
+
+    #jkfals;fjaksfjaksljfs;alkflsj
