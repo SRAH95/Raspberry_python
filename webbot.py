@@ -1,16 +1,21 @@
-from bs4 import BeautifulSoup
 import mechanize
 import time
-import urllib
+from bs4 import BeautifulSoup
 import string
+import urllib
 
-start = "http://" + raw_input ("Where would you like to start searching?\n")    
-br = mechanize.Browser()    #Creamos un objeto en forma de navegador
-r = br.open(start)          #Abrimos la pagina solicitada
-html = r.read()             #Lee la pagina solicitada en una unica cadena
+start = "http://www.irrelevantcheetah.com/browserimages.html"
+filetype = raw_input ("What file type are you looking for?\n")
+br = mechanize.Browser()
+r = br.open(start)
+html = r.read()
+soup = BeautifulSoup(html)
 
-soup = BeautifulSoup(html, "lxml")
 for link in soup.find_all('a'):
-    print (link.get('href'))
-
-    #jkfals;fjaksfjaksljfs;alkflsj
+    linkText = str(link)
+    fileName = str(link.get('href'))
+    if filetype in fileName:
+        image = urllib.URLopener()
+        linkGet = http://www.irrelevantcheetah.com + fileName
+        filesave = string.lstrip(fileName, '/')
+        image.retrieve(linkGet, filesave)
