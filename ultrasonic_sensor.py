@@ -1,0 +1,21 @@
+import RPi.GPIO as GPIO
+import time
+
+GPIO.setmode(GPIO.BCM)
+print "Measuring Distance"
+GPIO.setup(23,GPIO.OUT)
+GPIO.setup(24,GPIO.IN)
+GPIO.output(23, False)
+print "Setting Trigger pin to zero by default"
+time.sleep(1)
+while True
+    GPIO.output(23, True)
+    time.sleep(0.00001)
+    GPIO.output(23, False)
+    while GPIO.input(24) == 0:
+        start_time = time.time()
+    while GPIO.input(24) == 1:
+        end_time = time.time()
+    time = end_time - start_time
+    distance = 17150 * time
+    print "Measured Distance is :", distance, "cms."
