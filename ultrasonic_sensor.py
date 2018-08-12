@@ -12,6 +12,7 @@ GPIO.output(23, False)
 print "Setting Trigger pin to zero by default"
 time.sleep(1)
 while True:
+    time.sleep(0.5)
     GPIO.output(23, True)
     time.sleep(0.00001)
     GPIO.output(23, False)
