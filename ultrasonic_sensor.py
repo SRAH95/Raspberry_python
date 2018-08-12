@@ -19,6 +19,6 @@ while True:
             start_time = time.time()
     while GPIO.input(24) == 1:
             end_time = time.time()
-    time = end_time – start_time
-    distance = 17150 * time
+    time1 = end_time – start_time
+    distance = 17150 * time1
     print "Measured Distance is:", distance, "cms."
