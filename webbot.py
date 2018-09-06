@@ -1,3 +1,4 @@
+'''
 from bs4 import BeautifulSoup
 import mechanize
 import time
@@ -25,24 +26,69 @@ for link in soup.find_all('a'):
         image.retrieve(linkGet, filesave)
     elif "htm" in fileName:                                                 # This covers both ".htm" and ".html" filenames
         linkList.append(link)
-
+'''
 ################################################################################################################################
 
-'''linkList = []
-base = "http://" + raw_input ("Where would you like to start searching?\n")    
-filetype = raw_input("What file type are you looking for?\n")               #Estamos pidiendo el tipo de documento que queremos, .pdf, .mp4, etc.         
-br = mechanize.Browser()                                                    #Creamos un objeto en forma de navegador
-r = br.open(base)                                                           #Abrimos la pagina solicitada
-html = r.read()         
+from bs4 import BeautifulSoup
+import mechanize
+import urllib
+import string
 
-def downloadFiles (html, base, filetype, filelist):
-    soup = BeautifulSoup(html)
-    for link in soup.find_all('a'):
-        linkText = str(link.get('href'))
-        if filetype in linkText:
-            image = urllib.URLopener()
-            linkGet = base + linkText
-            filesave = string.lstrip(linkText, '/')
-            image.retrieve(linkGet, filesave)
-        elif "htm" in linkText:                                             # Covers both "html" and "htm"
-            linkList.append(link)'''
+star = "http://" + raw_input ("Where would you like to start searching?\n")    
+filetype = raw_input("What file type are you looking for?\n")        
+br = mechanize.Browser()                                                    #Creamos un objeto en forma de navegador
+r = br.open(star)                                                          #Abrimos la pagina solicitada
+html = r.read()                                                             #Lee la pagina solicitada en una unica cadena
+soup = BeautifulSoup(html, "html5lib")
+
+for link in soup.find_all('a'):
+    fileName = str(link.get('href'))
+    if filetype in fileName:
+        image = urllib.URLopener()
+        linkGet = "http://www.irrelevantcheetah.com" + fileName
+        filesave = fileName.replace('/', '_')
+        print("Downloading " + filesave + "...\n")
+        image.retrieve(linkGet,"/home/pi/Dropbox-Uploader/webbot/" +  filesave)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
